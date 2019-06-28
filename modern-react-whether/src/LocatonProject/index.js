@@ -22,18 +22,16 @@ export default class LocationPage extends React.Component{
             lattitude:null,
             error_message:null,
         }
+    }
+
+    componentDidMount(){
         window.navigator.geolocation.getCurrentPosition(
-            (position)=> this.setState({
-                lattitude:position.coords.latitude 
-            }),
-            (err)=>
-            
-            this.setState({
-                error_message:err.message
-            }),
+            (position)=> this.setState({lattitude:position.coords.latitude}),
+            (err)=>this.setState({error_message:err.message}),
         )
-    }    
-    render(){
+    }
+
+    renderContent=()=>{
         if (this.state.error_message && !this.state.lattitude){
             return(<div>Error : {this.state.error_message} </div>)
         }
@@ -47,5 +45,9 @@ export default class LocationPage extends React.Component{
         else{
             return(<Loader message="Please allow the permission to get your location above"/>)
         }
+    }
+       
+    render(){
+            return (<div>{this.renderContent()}</div>)
         }
 }
