@@ -22,6 +22,7 @@ export default class SearchBar extends Component {
                       type="text"
                       value={this.state.term}
                       onChange={(event)=>{this.setState({term: event.target.value})}}/>
+                    <button type="submit">Search</button>
               </form>
           </div>
         )
