@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
+import { selectSong } from "../actions"
 
 class SongList extends React.Component{
     renderList=()=>{
@@ -7,7 +8,8 @@ class SongList extends React.Component{
             return(
                 <div className="item" key={song.title}>
                     <div className="right floated content">
-                        <button className="ui button primary">
+                        <button className="ui button primary"
+                                onClick={()=>this.props.selectSong(song)}>
                             SELECT
                         </button>
                     </div>
@@ -17,7 +19,7 @@ class SongList extends React.Component{
         })
     }
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div className="ui divided list">
                 SongList<br/>
@@ -28,11 +30,16 @@ class SongList extends React.Component{
 }
 // --configuring connectwith MapStateToProps function, ------it takes all of our state data from he store and pass it as props to the SongList component-----the name of this function canbe anything but the code must be correct and it should be passed through the connect() wriiten below 
 const mapStateToProps=(state)=>{
-    // console.log(state.songs)
+    // console.log(state)
     return {songs:state.songs}
 }
+// action creator passing-----
+export default connect(
+    mapStateToProps,
+    {selectSong:selectSong}
+    )(SongList)
 
-export default connect(mapStateToProps)(SongList)
+// here the CONNECT()will take the SELEECTSONG action creator and pass it to the parent class SongList Component as a prop
 // HOW THE connect()(SongList) SYNTAX WORKS ?
 
 // LET US CONSIDER AN EXAMPLE:
