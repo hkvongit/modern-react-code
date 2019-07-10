@@ -11,7 +11,7 @@ const SongDetail=(props)=>{
             <div>
                 <h2>Song Details :</h2>
                 <p>
-                    Title : {props.song.title}<br/>
+                    Title : {props.song.title}<br/>   
                     Duration: {props.song.duration}
                 </p>
             </div>
